@@ -596,8 +596,6 @@ def main():
         result = {k: round(v, 4) for k, v in result.items()}
         return result
 
-    training_args.save_stragey='no'
-
     # Initialize our Trainer
     trainer = Seq2SeqTrainer(
         model=model,
