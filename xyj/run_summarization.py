@@ -615,7 +615,7 @@ def main():
         elif last_checkpoint is not None:
             checkpoint = last_checkpoint
         train_result = trainer.train(resume_from_checkpoint=checkpoint)
-        trainer.save_model()  # Saves the tokenizer too for easy upload
+        # trainer.save_model()  # Saves the tokenizer too for easy upload
 
         metrics = train_result.metrics
         max_train_samples = (
@@ -624,8 +624,8 @@ def main():
         metrics["train_samples"] = min(max_train_samples, len(train_dataset))
 
         trainer.log_metrics("train", metrics)
-        trainer.save_metrics("train", metrics)
-        trainer.save_state()
+        # trainer.save_metrics("train", metrics)
+        # trainer.save_state()
 
     # Evaluation
     results = {}
@@ -642,7 +642,7 @@ def main():
         metrics["eval_samples"] = min(max_eval_samples, len(eval_dataset))
 
         trainer.log_metrics("eval", metrics)
-        trainer.save_metrics("eval", metrics)
+        # trainer.save_metrics("eval", metrics)
 
     if training_args.do_predict:
         logger.info("*** Predict ***")
@@ -657,7 +657,7 @@ def main():
         metrics["predict_samples"] = min(max_predict_samples, len(predict_dataset))
 
         trainer.log_metrics("predict", metrics)
-        trainer.save_metrics("predict", metrics)
+        # trainer.save_metrics("predict", metrics)
 
         if trainer.is_world_process_zero():
             if training_args.predict_with_generate:
