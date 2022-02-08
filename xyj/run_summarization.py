@@ -596,6 +596,8 @@ def main():
         result = {k: round(v, 4) for k, v in result.items()}
         return result
 
+    training_args.save_stragey='no'
+
     # Initialize our Trainer
     trainer = Seq2SeqTrainer(
         model=model,
@@ -624,7 +626,7 @@ def main():
         metrics["train_samples"] = min(max_train_samples, len(train_dataset))
 
         trainer.log_metrics("train", metrics)
-        # trainer.save_metrics("train", metrics)
+        trainer.save_metrics("train", metrics)
         # trainer.save_state()
 
     # Evaluation
