@@ -306,6 +306,7 @@ def main():
             label_list = raw_datasets["train"].unique("label")
             label_list.sort()  # Let's sort it for determinism
             num_labels = len(label_list)
+    # print("NUM OF LABELS: ", num_labels)
 
     # Load pretrained model and tokenizer
     #
@@ -536,7 +537,7 @@ def main():
 
             output_predict_file = os.path.join(training_args.output_dir, f"predict_results_{task}.txt")
             if trainer.is_world_process_zero():
-                with open(output_predict_file, "w") as writer:
+                with open(output_predict_file, "w+") as writer:
                     logger.info(f"***** Predict results {task} *****")
                     writer.write("index\tprediction\n")
                     for index, item in enumerate(predictions):
